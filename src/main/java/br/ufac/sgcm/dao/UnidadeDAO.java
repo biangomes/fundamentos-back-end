@@ -10,17 +10,24 @@ import java.util.List;
 import br.ufac.sgcm.model.Unidade;
 
 public class UnidadeDAO implements IDao<Unidade>{
-    private Connection conexao;
-    private PreparedStatement query;
-    private ResultSet cursor;
+    private Connection conexao;     // vai receber a conexao da classe ConexaoDB
+    private PreparedStatement query;        //query = ps =>  monta a query SQL
+    private ResultSet cursor;       // cursor = rs => cursor do banco, inicia no zero
 
+
+    // Sempre que a UnidadeDAO for chamada, ela vai invocar o metodo getConexao da classe ConexaoDB
+    // para validar se já existe alguma conexão realizada
     public UnidadeDAO() {
         conexao = ConexaoDB.getConexao();
     }
 
+
     @Override
     public List<Unidade> get() {
-        
+        /*
+         * Metodo que retorna todas as unidades armazenadas
+         * no banco de dados
+         */
         List<Unidade> registros = new ArrayList<>();
         String sql = "SELECT * FROM unidade;";
 
@@ -34,7 +41,6 @@ public class UnidadeDAO implements IDao<Unidade>{
                 registro.setId(cursor.getLong("id"));
                 registro.setNome(cursor.getString("nome"));
                 registro.setEndereco(cursor.getString("endereco"));
-
                 registros.add(registro);
             }
         } catch (SQLException e) {
@@ -42,7 +48,7 @@ public class UnidadeDAO implements IDao<Unidade>{
         }
 
 
-        return null;
+        return registros;
     }
 
     @Override

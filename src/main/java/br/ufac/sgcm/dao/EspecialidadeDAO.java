@@ -23,6 +23,11 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
 
     @Override
     public List<Especialidade> get() {
+
+        /*
+         * Metodo que retorna todas as unidades armazenadas
+         * no banco de dados
+         */
         List<Especialidade> registros = new ArrayList<>();
         String sql = "SELECT * FROM Especialidade;";
 
@@ -30,6 +35,8 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
             query = conexao.prepareStatement(sql);
             cursor = query.executeQuery();
 
+            
+            // Garante que o cursor sempre mudará o registro
             while (cursor.next()) {
                 Especialidade registro = new Especialidade();
                 registro.setId(cursor.getLong("id"));
@@ -43,10 +50,11 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
         return registros;
     }
 
+    
     @Override
     public Especialidade get(Long id) {
         Especialidade registro = new Especialidade();
-        String sql = "SELECT * FROM especialidade WHERE id = ?";
+        String sql = "SELECT * FROM especialidade WHERE id = ?";        // o parametro eh adicionado na linha 61
 
         try {
             query = conexao.prepareStatement(sql);

@@ -23,6 +23,10 @@ public class UnidadeServlet extends HttpServlet {
         List<Unidade> unidadeList = dao.get();
         
 
+        /* Valida se foi passado um parâmetro na URL 
+         * req.getParameter("id") == null => NAO tem parametro na URL, portanto, retornará todas as unidades
+         * req.getParameter("id") != null => POSSUI parametro na URL, portanto, retornará apenas o registro específico.
+        */
         if (req.getParameter("id") != null) {
             Unidade unidadeId = dao.get(Long.parseLong(req.getParameter("id")));
             saida.println(unidadeId.getId() + " - " + unidadeId.getNome() + " - " + unidadeId.getEndereco());
