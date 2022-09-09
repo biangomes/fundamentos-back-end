@@ -52,7 +52,6 @@ public class UnidadeDAO implements IDao<Unidade>{
         String sql = "SELECT * FROM unidade WHERE id = ?";
 
         try {
-            
             query = conexao.prepareStatement(sql);
             query.setLong(1, id);
             cursor = query.executeQuery();

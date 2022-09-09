@@ -17,17 +17,18 @@ public class UnidadeServlet extends HttpServlet {
     
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer = resp.getWriter();
+        PrintWriter saida = resp.getWriter();
 
-        UnidadeDAO unidadeDao = new UnidadeDAO();
-        List<Unidade> unidades = new ArrayList<>();
-        Unidade unidade = new Unidade();
+        UnidadeDAO dao = new UnidadeDAO();
+        List<Unidade> unidadeList = dao.get();
+        
 
         if (req.getParameter("id") != null) {
-                writer.println(unidade.getId() + " - " + unidade.getNome());
+            Unidade unidadeId = dao.get(Long.parseLong(req.getParameter("id")));
+            saida.println(unidadeId.getId() + " - " + unidadeId.getNome() + " - " + unidadeId.getEndereco());
         } else {
-            for (Unidade uni: unidades) {
-                writer.println(uni.getId() + " - " + uni.getNome() + " - " + uni.getEndereco());
+            for (Unidade unidade: unidadeList) {
+                saida.println(unidade.getId() + " - " + unidade.getNome() + " - " + unidade.getEndereco());
             }
         }
 
