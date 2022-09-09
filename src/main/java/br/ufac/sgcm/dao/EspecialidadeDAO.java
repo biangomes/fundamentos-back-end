@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.cj.x.protobuf.MysqlxPrepare.Prepare;
+
 import br.ufac.sgcm.model.Especialidade;
 
 public class EspecialidadeDAO implements IDao<Especialidade> {
@@ -25,7 +27,7 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
         String sql = "SELECT * FROM Especialidade;";
 
         try {    
-            query = this.conexao.prepareStatement(sql);
+            query = conexao.prepareStatement(sql);
             cursor = query.executeQuery();
 
             while (cursor.next()) {
@@ -43,7 +45,25 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
 
     @Override
     public Especialidade get(Long id) {
-        return null;
+        Especialidade registro = new Especialidade();
+        String sql = "SELECT * FROM especialidade WHERE id = ?";
+
+        try {
+            query = conexao.prepareStatement(sql);
+            query.setLong(1, id);
+            cursor = query.executeQuery();
+
+            while (cursor.next()) {
+                registro.setId(cursor.getLong("id"));
+                registro.setNome(cursor.getString("nome"));
+            }
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return registro;
+
     }
 
 
