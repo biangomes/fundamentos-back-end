@@ -25,7 +25,7 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
         String sql = "SELECT * FROM Especialidade;";
 
         try {    
-            query = conexao.prepareStatement(sql);
+            query = this.conexao.prepareStatement(sql);
             cursor = query.executeQuery();
 
             while (cursor.next()) {
