@@ -27,10 +27,18 @@ public class PrimeiroServlet extends HttpServlet {
         // saida.println("</html>");
 
         EspecialidadeDAO dao = new EspecialidadeDAO();
-        List<Especialidade> especialidades = dao.get();
+        List<Especialidade> especialidadeList = dao.get();
 
-        for (Especialidade e: especialidades) {
-            saida.println(e.getId() + " - " + e.getNome());
+
+        // Se for passado um parametro na URL
+        if (req.getParameter("id") != null) {
+            Especialidade especialidadeId = dao.get(Long.parseLong(req.getParameter("id")));
+            saida.println(especialidadeId.getId() + " - " + especialidadeId.getNome());
+        } else {
+            for (Especialidade e: especialidadeList) {
+                saida.println(e.getId() + " - " + e.getNome());
+            }
         }
+
     }
 }
