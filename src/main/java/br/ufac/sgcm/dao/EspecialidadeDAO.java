@@ -75,9 +75,11 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
     }
 
 
+    // TODO: continuar amanha dia 14/09
     @Override
     public int insert() {
-        return 0;
+        Especialidade registro = new Especialidade();
+        String sql = "INSERT INTO especialidade VALUES (?, ?, ?, ?, ?);"
     }
 
 
