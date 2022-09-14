@@ -5,10 +5,10 @@ import java.io.Serializable;
 public class Profissional implements Serializable {
     
     private Long id;
-    private String nome;
-    private String endereco;
-    private String telefone;
     private String email;
+    private String nome;
+    private String registroConselho;
+    private String telefone;
     private Especialidade especialidade;
     private Unidade unidade;
 
@@ -29,12 +29,12 @@ public class Profissional implements Serializable {
         this.nome = nome;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getRegistroConselho() {
+        return registro_conselho;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setRegistroConselho(String registroConselho) {
+        this.registroConselho = registroConselho;
     }
 
     public String getTelefone() {

@@ -77,19 +77,29 @@ public class EspecialidadeDAO implements IDao<Especialidade> {
 
     // TODO: continuar amanha dia 14/09
     @Override
-    public int insert() {
-        Especialidade registro = new Especialidade();
-        String sql = "INSERT INTO especialidade VALUES (?, ?, ?, ?, ?);"
+    public int insert(Especialidade objeto) throws SQLException {
+        int registrosAfetados = 0;
+        //Especialidade registro = new Especialidade();
+        String sql = "INSERT INTO especialidade " +
+                     "(id, nome) " + 
+                     "VALUES (?, ?);";
+        query = conexao.prepareStatement(sql);
+        query.setLong(1, objeto.getId());
+        query.setString(2, objeto.getNome());
+        registrosAfetados = query.executeUpdate();
+
+        return registrosAfetados;
     }
 
 
     @Override
     public int update() {
+        int registrosAfetados = 0;
         return 0;
     }
 
     @Override
-    public int delete() {
+    public int delete(Long id) throws SQLException{
         return 0;
     }
 }

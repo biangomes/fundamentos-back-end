@@ -1,9 +1,11 @@
 package br.ufac.sgcm.controller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import br.ufac.sgcm.dao.EspecialidadeDAO;
 import br.ufac.sgcm.model.Especialidade;
+import br.ufac.sgcm.model.Profissional;
 
 public class EspecialidadeController implements IController<Especialidade> {
 
@@ -20,6 +22,7 @@ public class EspecialidadeController implements IController<Especialidade> {
         return dao.get();
     }
 
+
     @Override
     public Especialidade get(Long id) {
         return dao.get(id);
@@ -27,10 +30,10 @@ public class EspecialidadeController implements IController<Especialidade> {
 
     // O método retornará um inteiro que se refere a quantidade de registros afetados
     @Override
-    public int save(Especialidade objeto) {
+    public int save(Profissional objeto) throws SQLException {
         int registrosAfetados = 0;
 
-        if (objeto.getId() != null) {
+        if (objeto.getId() == null) {
             registrosAfetados = dao.insert(objeto);
         } else {
             registrosAfetados = dao.update(objeto);
@@ -40,7 +43,7 @@ public class EspecialidadeController implements IController<Especialidade> {
     }
 
     @Override
-    public int delete(Especialidade objeto) {
-        return 0;
+    public int delete(Long id) throws SQLException {
+        return dao.delete(id);
     }
 }
