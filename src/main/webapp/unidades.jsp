@@ -1,11 +1,32 @@
+<%@ page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@ include file="include/head.jsp" %>
-
+    <head>
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no">
+        <meta charset="utf-8">
+        <title>SGCM</title>
+        <link rel="stylesheet" href="estilo.css">
+        <link rel="stylesheet" href="estilo-tema-azul.css" id="link-tema">
+        <script src="script.js"></script>
+    </head>
     <body>
-        <%@ include file="include/header.jsp" %>
-        
-        <%@ include file="include/nav.jsp" %>
+        <header>
+            <div id="logo">
+                <img src="imagens/logo.png" alt="Logo SGCM">
+                <span id="titulo">SGCM</span>
+            </div>
+            <div id="usuarioInfo">
+                <span>Usuário: Administrador (Admin)</span>
+                <span>Papel: ADMIN</span>           
+                <select id="tema">
+                    <option value="">Escolha um tema</option>
+                    <option value="azul">Azul</option>
+                    <option value="verde">Verde</option>
+                </select>
+                <a href="javascript:void(0)" class="botao">Logout</a>
+            </div>
+        </header>
 
         <main>
             <form action="#" class="inativo">
@@ -18,7 +39,17 @@
                 <input type="button" value="Cancelar">
                 <input type="submit" value="Salvar">
             </form>
-            <%@ include file="include/comandos.jsp" %>
+            <div id="comandos">
+                <a href="javascript:void(0)"
+                   id="add"
+                   class="botao">Adicionar</a>
+                <div>
+                    <form action="">
+                        <label for="busca">Busca</label>
+                        <input type="text" name="busca" id="busca">
+                    </form>
+                </div>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -64,6 +95,9 @@
                 </tfoot>
             </table>
         </main>
-        <%@ include file="include/footer.jsp" %>
+        <footer>
+            <span>SGCM - Sistema de Gerenciamento de Clínica Médica</span>
+            <span>Suporte Técnico: (68) 5555-5555 | <a href="mailto:suporte.sgcm@ufac.br">suporte.sgcm@ufac.br</a></span>
+        </footer>
     </body>
 </html>
