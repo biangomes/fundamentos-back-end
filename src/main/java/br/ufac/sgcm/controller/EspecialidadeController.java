@@ -5,7 +5,6 @@ import java.util.List;
 
 import br.ufac.sgcm.dao.EspecialidadeDAO;
 import br.ufac.sgcm.model.Especialidade;
-import br.ufac.sgcm.model.Profissional;
 
 public class EspecialidadeController implements IController<Especialidade> {
 
@@ -30,7 +29,7 @@ public class EspecialidadeController implements IController<Especialidade> {
 
     // O método retornará um inteiro que se refere a quantidade de registros afetados
     @Override
-    public int save(Profissional objeto) throws SQLException {
+    public int save(Especialidade objeto) throws SQLException{
         int registrosAfetados = 0;
 
         if (objeto.getId() == null) {

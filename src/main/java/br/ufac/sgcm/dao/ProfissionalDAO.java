@@ -81,5 +81,45 @@ public class ProfissionalDAO implements IDao<Profissional> {
         return registro;
     }
 
-    
+
+    @Override
+    public int insert(Profissional objeto) {
+        
+        int registrosAfetados = 0;
+        String sql = "INSERT INTO profissional " +
+                     "(id, email, nome, registro_conselho, telefone, especialidade_id, unidade_id) " +
+                     "VALUES (?, ?, ?, ?, ?, ?, ?);";
+
+        try {
+            query = conexao.prepareStatement(sql);
+            query.setLong(1, objeto.getId());
+            query.setString(2, objeto.getEmail());
+            query.setString(3, objeto.getNome());
+            query.setLong(4, objeto.getEspecialidade().getId());
+            query.setLong(5, objeto.getUnidade().getId());
+            registrosAfetados = query.executeUpdate();
+        
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return registrosAfetados;
+    }
+
+
+    @Override
+    public int update(Profissional objeto) {
+        return 0;
+    }
+
+
+    @Override
+    public int delete(Long id) {
+        
+        int registrosAfetados = 0;
+        String sql = "DELETE FROM profissional WHERE id = ?";
+        query = conexao.prepareStatement(sql);
+        query.setLong(1, id);
+    }
 }
